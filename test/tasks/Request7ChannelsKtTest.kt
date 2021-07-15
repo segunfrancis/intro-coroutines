@@ -3,13 +3,15 @@ package tasks
 import contributors.MockGithubService
 import contributors.concurrentProgressResults
 import contributors.testRequestData
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert
 import org.junit.Test
 
 class Request7ChannelsKtTest {
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun testChannels() = runBlocking {
+    fun testChannels() = runBlockingTest {
         val startTime = System.currentTimeMillis()
         var index = 0
         loadContributorsChannels(MockGithubService, testRequestData) {
